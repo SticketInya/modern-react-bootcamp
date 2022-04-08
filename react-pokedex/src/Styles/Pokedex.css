@@ -1,0 +1,19 @@
+.Pokedex{
+    padding: 2rem;
+}
+
+.Pokedex__content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.Pokedex__title--winner{
+    color: green;
+}
+
+.Pokedex__title--loser{
+    color: red;
+}
