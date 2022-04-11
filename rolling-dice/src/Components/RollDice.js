@@ -11,7 +11,7 @@ class RollDice extends Component {
 
   animateDice() {
     this.setState({ isAnimated: true });
-    setInterval(() => {
+    setTimeout(() => {
       this.setState({ isAnimated: false });
     }, 1100);
   }
@@ -19,8 +19,7 @@ class RollDice extends Component {
   roll = () => {
     const rand1 = Math.floor(Math.random() * 6) + 1;
     const rand2 = Math.floor(Math.random() * 6) + 1;
-    this.setState({ die1: rand1 });
-    this.setState({ die2: rand2 });
+    this.setState({ die1: rand1, die2: rand2 });
     this.animateDice();
   };
 
