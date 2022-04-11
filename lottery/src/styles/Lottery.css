@@ -1,0 +1,8 @@
+.Lottery__numbers{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem;
+}
