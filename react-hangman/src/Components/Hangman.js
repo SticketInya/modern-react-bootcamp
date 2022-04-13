@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../Styles/Hangman.css';
+import { words } from './words';
 
 library.add(faHeart);
 
@@ -16,14 +17,16 @@ class Hangman extends Component {
         this.state = {
             nWrong: 0,
             guessed: new Set(),
-            answer: 'apple',
+            answer: this.getWord(),
         };
     }
 
     guessedWord = () => {
         return this.state.answer
             .split('')
-            .map((letter) => (this.state.guessed.has(letter) ? letter : '_'));
+            .map((letter) =>
+                this.state.guessed.has(letter) || letter === '-' ? letter : '_',
+            );
     };
 
     handleGuess = (e) => {
@@ -47,6 +50,11 @@ class Hangman extends Component {
                 </button>
             );
         });
+    };
+
+    getWord = () => {
+        const randIndex = Math.floor(Math.random() * words.length);
+        return words[randIndex];
     };
 
     render() {
