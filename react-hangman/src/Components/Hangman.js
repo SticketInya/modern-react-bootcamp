@@ -68,6 +68,7 @@ class Hangman extends Component {
 
     render() {
         const isGameOver = this.state.nWrong >= this.props.maxWrong;
+        const isWinner = this.guessedWord().join('') === this.state.answer;
         const lives = Array.from({
             length: this.props.maxWrong - this.state.nWrong,
         }).map((n, i) => (
@@ -85,7 +86,11 @@ class Hangman extends Component {
                     {isGameOver ? this.state.answer : this.guessedWord()}
                 </p>
                 <p className='Hangman__btns'>
-                    {isGameOver ? 'You lost!' : this.generateButtons()}
+                    {isWinner
+                        ? 'You Won!'
+                        : isGameOver
+                        ? 'You lost!'
+                        : this.generateButtons()}
                 </p>
                 <button onClick={this.restartGame} className='Hangman__restart'>
                     Restart
