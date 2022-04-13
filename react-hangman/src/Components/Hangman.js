@@ -38,6 +38,7 @@ class Hangman extends Component {
         return 'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => {
             return (
                 <button
+                    key={letter}
                     value={letter}
                     onClick={this.handleGuess}
                     disabled={this.state.guessed.has(letter)}
@@ -51,8 +52,12 @@ class Hangman extends Component {
     render() {
         const lives = Array.from({
             length: this.props.maxWrong - this.state.nWrong,
-        }).map((n) => (
-            <FontAwesomeIcon icon='fa-solid fa-heart' className='life' />
+        }).map((n, i) => (
+            <FontAwesomeIcon
+                key={i}
+                icon='fa-solid fa-heart'
+                className='life'
+            />
         ));
         return (
             <div className='Hangman'>
