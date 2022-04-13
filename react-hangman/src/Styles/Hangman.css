@@ -1,0 +1,46 @@
+.Hangman__word{
+    letter-spacing: 1em;
+    margin: 0.4em -1em 0.2em 0;
+    font-size: 2em;
+}
+
+.Hangman__lives{
+    display: flex;
+    gap: 0.2em;
+    justify-content: center;
+    font-size: 3em;
+    color: red;
+}
+
+.Hangman__btns{
+    text-align: center;
+    display: inline-block;
+    width: 250px;
+    margin-top: 0;
+}
+
+.Hangman__btns button{
+    border: none;
+    font-family: inherit;
+    font-size: 1em;
+    cursor: pointer;
+    width: 30px;
+    margin: 5px 2px 2px 2px;
+    letter-spacing: 1px;
+    outline: none;
+    background: #ffc107;
+    color: #fff;
+    box-shadow: 0 6px #ff9800;
+    border-radius: 5px;
+    padding-top: 4px;
+}
+
+.Hangman__btns button:hover{
+    background: #ff9800;
+}
+
+.Hangman__btns button:disabled{
+    background: #bdbdbd;
+    color: #eeeeee;
+    box-shadow: 0 6px #acaaaa;
+}
