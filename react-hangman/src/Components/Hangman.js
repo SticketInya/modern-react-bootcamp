@@ -57,6 +57,15 @@ class Hangman extends Component {
         return words[randIndex];
     };
 
+    restartGame = () => {
+        const newState = {
+            nWrong: 0,
+            guessed: new Set(),
+            answer: this.getWord(),
+        };
+        this.setState({ ...newState });
+    };
+
     render() {
         const isGameOver = this.state.nWrong >= this.props.maxWrong;
         const lives = Array.from({
@@ -78,6 +87,9 @@ class Hangman extends Component {
                 <p className='Hangman__btns'>
                     {isGameOver ? 'You lost!' : this.generateButtons()}
                 </p>
+                <button onClick={this.restartGame} className='Hangman__restart'>
+                    Restart
+                </button>
             </div>
         );
     }
