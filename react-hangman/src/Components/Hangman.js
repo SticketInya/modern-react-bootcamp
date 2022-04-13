@@ -50,6 +50,7 @@ class Hangman extends Component {
     };
 
     render() {
+        const isGameOver = this.state.nWrong >= this.props.maxWrong;
         const lives = Array.from({
             length: this.props.maxWrong - this.state.nWrong,
         }).map((n, i) => (
@@ -63,8 +64,12 @@ class Hangman extends Component {
             <div className='Hangman'>
                 <h1>React-hangman</h1>
                 <div className='Hangman__lives'>{lives}</div>
-                <p className='Hangman__word'>{this.guessedWord()}</p>
-                <p className='Hangman__btns'>{this.generateButtons()}</p>
+                <p className='Hangman__word'>
+                    {isGameOver ? this.state.answer : this.guessedWord()}
+                </p>
+                <p className='Hangman__btns'>
+                    {isGameOver ? 'You lost!' : this.generateButtons()}
+                </p>
             </div>
         );
     }
