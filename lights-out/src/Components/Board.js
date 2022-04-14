@@ -14,12 +14,21 @@ class Board extends Component {
 
         this.state = {
             hasWon: false,
-            board: [],
+            board: this.createBoard(),
         };
     }
 
     createBoard = () => {
         let board = [];
+
+        for (let i = 0; i < this.props.nrows; i++) {
+            let row = [];
+            for (let j = 0; j < this.props.ncols; j++) {
+                const isLit = Math.random() <= this.props.chanceLightStartsOn;
+                row.push(isLit);
+            }
+            board.push(row);
+        }
 
         return board;
     };
@@ -45,7 +54,12 @@ class Board extends Component {
                     {Array.from({
                         length: this.props.ncols,
                     }).map((_, j) => {
-                        return <Cell key={`${i}-${j}`} isLit={true} />;
+                        return (
+                            <Cell
+                                key={`${i}-${j}`}
+                                isLit={this.state.board[i][j]}
+                            />
+                        );
                     })}
                 </tr>
             );
