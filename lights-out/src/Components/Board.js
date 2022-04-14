@@ -64,8 +64,8 @@ class Board extends Component {
         });
     };
 
-    render() {
-        const fields = Array.from({ length: this.props.nrows }).map((_, i) => {
+    createFields = () => {
+        return Array.from({ length: this.props.nrows }).map((_, i) => {
             return (
                 <tr className={'Board__row'} key={i}>
                     {Array.from({
@@ -85,8 +85,10 @@ class Board extends Component {
                 </tr>
             );
         });
+    };
 
-        const winner = (
+    createWinner = () => {
+        return (
             <div>
                 <h2 className='Board__winner'>Congratulations! You won!</h2>
                 <button className='Board__restart' onClick={this.restartGame}>
@@ -94,6 +96,11 @@ class Board extends Component {
                 </button>
             </div>
         );
+    };
+
+    render() {
+        const fields = this.createFields();
+        const winner = this.createWinner();
 
         return (
             <div className='Board'>
