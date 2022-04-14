@@ -57,6 +57,13 @@ class Board extends Component {
         this.setState({ board, hasWon });
     };
 
+    restartGame = () => {
+        this.setState({
+            hasWon: false,
+            board: this.createBoard(),
+        });
+    };
+
     render() {
         const fields = Array.from({ length: this.props.nrows }).map((_, i) => {
             return (
@@ -79,19 +86,20 @@ class Board extends Component {
             );
         });
 
+        const winner = (
+            <div>
+                <h2 className='Board__winner'>Congratulations! You won!</h2>
+                <button className='Board__restart' onClick={this.restartGame}>
+                    Play again!
+                </button>
+            </div>
+        );
+
         return (
             <div className='Board'>
                 <h1 className='Board__title'>Lights Out</h1>
                 <table>
-                    <tbody>
-                        {this.state.hasWon ? (
-                            <h2 className='Board__winner'>
-                                Congratulations! You won!
-                            </h2>
-                        ) : (
-                            fields
-                        )}
-                    </tbody>
+                    <tbody>{this.state.hasWon ? winner : fields}</tbody>
                 </table>
             </div>
         );
