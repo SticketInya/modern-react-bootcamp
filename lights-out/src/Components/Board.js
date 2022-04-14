@@ -6,7 +6,7 @@ class Board extends Component {
     static defaultProps = {
         nrows: 5,
         ncols: 5,
-        chanceLightStartsOn: 0.2,
+        chanceLightStartsOn: 0.25,
     };
 
     constructor(props) {
@@ -24,7 +24,7 @@ class Board extends Component {
         for (let i = 0; i < this.props.nrows; i++) {
             let row = [];
             for (let j = 0; j < this.props.ncols; j++) {
-                const isLit = Math.random() <= this.props.chanceLightStartsOn;
+                const isLit = Math.random() < this.props.chanceLightStartsOn;
                 row.push(isLit);
             }
             board.push(row);
@@ -33,19 +33,29 @@ class Board extends Component {
         return board;
     };
 
-    flipCellsAround(coord) {
+    flipCellsAround = (coord) => {
         let { ncols, nrows } = this.props;
         let board = this.state.board;
-        let [y, x] = coord.split('-').map(Number);
+        let [row, col] = coord.split('-').map(Number);
 
-        function flipCell(y, x) {
-            if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-                board[y][x] = !board[y][x];
+        function flipCell(row, col) {
+            if (col >= 0 && col < ncols && row >= 0 && row < nrows) {
+                board[row][col] = !board[row][col];
             }
         }
 
-        // this.setState({ board, hasWon });
-    }
+        flipCell(row, col);
+        flipCell(row - 1, col);
+        flipCell(row + 1, col);
+        flipCell(row, col - 1);
+        flipCell(row, col + 1);
+
+        const hasWon = board.filter((row) => row.indexOf(true) > -1)[0]
+            ? false
+            : true;
+
+        this.setState({ board, hasWon });
+    };
 
     render() {
         const fields = Array.from({ length: this.props.nrows }).map((_, i) => {
@@ -54,21 +64,34 @@ class Board extends Component {
                     {Array.from({
                         length: this.props.ncols,
                     }).map((_, j) => {
+                        const coord = `${i}-${j}`;
                         return (
                             <Cell
-                                key={`${i}-${j}`}
+                                key={coord}
                                 isLit={this.state.board[i][j]}
+                                flipCellsAroundMe={() =>
+                                    this.flipCellsAround(coord)
+                                }
                             />
                         );
                     })}
                 </tr>
             );
         });
+
         return (
             <div className='Board'>
                 <h1 className='Board__title'>Lights Out</h1>
                 <table>
-                    <tbody>{fields}</tbody>
+                    <tbody>
+                        {this.state.hasWon ? (
+                            <h2 className='Board__winner'>
+                                Congratulations! You won!
+                            </h2>
+                        ) : (
+                            fields
+                        )}
+                    </tbody>
                 </table>
             </div>
         );
