@@ -26,6 +26,7 @@ class NewTodoForm extends Component {
                         className='NewTodoForm__input'
                         placeholder='NewTodo'
                         onChange={this.handleChange}
+                        value={this.state.task}
                     />
                     <button className='NewTodoForm__add'>Add todo</button>
                 </form>

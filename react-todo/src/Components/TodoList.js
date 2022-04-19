@@ -22,19 +22,28 @@ class TodoList extends Component {
         this.setState({ todos: newTodos });
     };
 
+    update = (id, task) => {
+        const newTodos = this.state.todos.map((todo) =>
+            todo.id === id ? { ...todo, task: task } : todo,
+        );
+        this.setState({ todos: [...newTodos] });
+    };
+
     render() {
         return (
             <div className='TodoList'>
+                <h1 className='TodoList__title'>Todo List</h1>
+                <NewTodoForm addTodo={this.addTodo} />
                 <div className='TodoList__tasks'>
                     {this.state.todos.map((todo) => (
                         <Todo
                             task={todo.task}
                             key={todo.id}
                             removeTodo={() => this.remove(todo.id)}
+                            editTodo={(task) => this.update(todo.id, task)}
                         />
                     ))}
                 </div>
-                <NewTodoForm addTodo={this.addTodo} />
             </div>
         );
     }
