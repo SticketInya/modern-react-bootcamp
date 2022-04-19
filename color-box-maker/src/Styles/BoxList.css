@@ -1,0 +1,11 @@
+.BoxList{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+}
+
+.Boxes{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+}
