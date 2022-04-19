@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { v4 as uuid } from 'uuid';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
+import '../Styles/TodoList.css';
 
 class TodoList extends Component {
     constructor(props) {

@@ -1,0 +1,22 @@
+.TodoList{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1em;
+    background-color: #FCBF49;
+    padding: 2em 5em 3em 5em;
+    margin-top: 5rem;
+    border-radius: 1.5rem;
+}
+
+.TodoList__title{
+    color: #003049;
+    font-size: 3rem;
+}
+
+.TodoList__tasks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+}

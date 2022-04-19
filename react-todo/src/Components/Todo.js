@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import '../Styles/Todo.css';
 
 class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isEditing: false,
+            isDone: false,
             task: this.props.task,
         };
     }
@@ -27,10 +29,20 @@ class Todo extends Component {
         this.toggleEdit();
     };
 
+    handleClick = () => {
+        this.setState({ isDone: !this.state.isDone });
+    };
+
     render() {
+        const doneTodo = this.state.isDone ? '--done' : '';
         const todo = !this.state.isEditing ? (
-            <div>
-                <div className='Todo__task'>{this.props.task}</div>
+            <div className='Todo__display'>
+                <div
+                    className={`Todo__task${doneTodo}`}
+                    onClick={this.handleClick}
+                >
+                    {this.props.task}
+                </div>
                 <button className='Todo__edit' onClick={this.toggleEdit}>
                     Edit
                 </button>
@@ -39,13 +51,14 @@ class Todo extends Component {
                 </button>
             </div>
         ) : (
-            <form onSubmit={this.handleEdit}>
+            <form className='Todo__form' onSubmit={this.handleEdit}>
                 <input
+                    className='Todo__input'
                     type='text'
                     value={this.state.task}
                     onChange={this.handleChange}
                 />
-                <button>Save</button>
+                <button className='Todo__save'>Save</button>
             </form>
         );
         return <div className='Todo'>{todo}</div>;
