@@ -6,6 +6,10 @@ import '../Styles/Deck.css';
 const API_URL = 'https://deckofcardsapi.com/api/deck/';
 
 class Deck extends Component {
+    static defaultProps = {
+        minRot: -15,
+        maxRot: 15,
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -28,8 +32,7 @@ class Deck extends Component {
         const {
             data: { cards, remaining },
         } = await axios.get(drawUrl).catch((err) => console.log(err));
-        const minRot = -15;
-        const maxRot = +15;
+        const { minRot, maxRot } = this.props;
         const rotation = Math.floor(Math.random() * (maxRot - minRot)) + minRot;
         const newCards = [
             ...this.state.drawnCards,
