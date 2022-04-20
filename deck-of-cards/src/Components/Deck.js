@@ -77,7 +77,7 @@ class Deck extends Component {
             <div className='Deck'>
                 <h1 className='Deck__title'>React Deck of Cards</h1>
                 {button}
-                <div className='Deck__Cards'>{cards}</div>
+                <div className='Deck__cards'>{cards}</div>
             </div>
         );
     }
