@@ -65,7 +65,7 @@ class Deck extends Component {
         ));
         const button = isDisabled ? (
             <button className='Deck__button' onClick={this.shuffleDeck}>
-                shuffle
+                Reshuffle
             </button>
         ) : (
             <button
