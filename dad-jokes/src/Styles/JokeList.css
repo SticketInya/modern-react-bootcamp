@@ -25,6 +25,15 @@
     color: #4f4f4f;
 }
 
+.JokeList__loader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #264653;
+    height: 100%;
+}
+
 .JokeList__btn{
     font-size: 1.4rem;
     font-weight: 700;
