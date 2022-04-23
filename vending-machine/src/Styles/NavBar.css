@@ -1,0 +1,27 @@
+.Navbar{
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: darkslategrey;
+    color: whitesmoke;
+}
+
+.Navbar__link{
+    font-size: 1.5rem;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.Navbar__link:visited{
+    font-size: 1rem;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+
+.Navbar__link.active{
+    font-weight: 600;
+    text-decoration: underline;
+}

@@ -1,0 +1,26 @@
+.Nutbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.Nutbar__title{
+    font-size: 3rem;
+    margin-top: 4rem;
+}
+
+.Nutbar__img{
+    width: 40%;
+}
+
+.Nutbar__back{
+    background-color: brown;
+    color: wheat;
+    padding: 1em 2em;
+    border-radius: 1em;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}

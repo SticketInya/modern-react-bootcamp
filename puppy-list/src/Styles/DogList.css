@@ -1,0 +1,10 @@
+.DogList__dog{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.DogList__img{
+    width: 70%;
+}
