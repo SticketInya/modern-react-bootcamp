@@ -12,7 +12,10 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Todo({ id, task, isCompleted, isLast, toggleCompleted }) {
+function Todo({ id, task, isCompleted, isLast, toggleCompleted, removeTodo }) {
+    const handleRemove = () => {
+        removeTodo(id);
+    };
     return (
         <>
             <ListItem className='Todo'>
@@ -31,7 +34,7 @@ function Todo({ id, task, isCompleted, isLast, toggleCompleted }) {
                     <IconButton aria-label='Edit'>
                         <EditIcon />
                     </IconButton>
-                    <IconButton aria-label='Delete'>
+                    <IconButton aria-label='Delete' onClick={handleRemove}>
                         <DeleteIcon />
                     </IconButton>
                 </ListItemSecondaryAction>

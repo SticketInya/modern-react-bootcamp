@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function useHandleChangeState(initialValue) {
+export default function useFormInputState(initialValue) {
     const [state, setState] = useState(initialValue);
 
     const handleChange = (e) => {

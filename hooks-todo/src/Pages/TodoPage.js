@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 //Components
 import TodoList from '../Components/TodoList';
+import TodoForm from '../Components/TodoForm';
 
 //MaterialUI
 import Paper from '@mui/material/Paper';
+import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
 
 //CSS
 import './TodoPage.css';
-import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
-import TodoForm from '../Components/TodoForm';
 
 function TodoPage(props) {
     const initialTodos = [
@@ -41,6 +41,10 @@ function TodoPage(props) {
         setTodos([...todos, newTodo]);
     };
 
+    const removeTodo = (id) => {
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    };
+
     const toggleCompleted = (id) => {
         const newTodos = todos.map((todo) =>
             todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
@@ -61,7 +65,11 @@ function TodoPage(props) {
             >
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm addTodo={addTodo} />
-                    <TodoList todos={todos} toggleCompleted={toggleCompleted} />
+                    <TodoList
+                        todos={todos}
+                        toggleCompleted={toggleCompleted}
+                        removeTodo={removeTodo}
+                    />
                 </Grid>
             </Grid>
         </Paper>

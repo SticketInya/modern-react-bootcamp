@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Paper, TextField } from '@mui/material';
-import useHandleChangeState from '../Hooks/useHandleChangeState';
+import useFormInputState from '../Hooks/useFormInputState';
 
 function TodoForm({ addTodo }) {
-    const [task, updateTask, resetTask] = useHandleChangeState('');
+    const [task, updateTask, resetTask] = useFormInputState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
