@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 //Components
@@ -12,25 +12,13 @@ import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
 //CSS
 import './TodoPage.css';
 
-function TodoPage(props) {
-    const initialTodos = [
-        {
-            id: uuidv4(),
-            task: 'Example Todo task one',
-            isCompleted: false,
-        },
-        {
-            id: uuidv4(),
-            task: 'Example Todo task two',
-            isCompleted: true,
-        },
-        {
-            id: uuidv4(),
-            task: 'Example Todo task three',
-            isCompleted: false,
-        },
-    ];
+function TodoPage() {
+    const initialTodos = JSON.parse(localStorage.getItem('todos') || '[]');
     const [todos, setTodos] = useState(initialTodos);
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
     const addTodo = (task) => {
         const newTodo = {
