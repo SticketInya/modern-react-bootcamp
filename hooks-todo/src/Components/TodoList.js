@@ -6,7 +6,7 @@ import Todo from './Todo';
 //MaterialUI
 import { List, Paper } from '@mui/material';
 
-function TodoList({ todos, toggleCompleted, removeTodo }) {
+function TodoList({ todos, toggleCompleted, removeTodo, editTodo }) {
     if (todos.length === 0) {
         return null;
     }
@@ -20,6 +20,7 @@ function TodoList({ todos, toggleCompleted, removeTodo }) {
                         isLast={i < todos.length - 1}
                         toggleCompleted={toggleCompleted}
                         removeTodo={removeTodo}
+                        editTodo={editTodo}
                     />
                 ))}
             </List>

@@ -1,5 +1,9 @@
 import React from 'react';
 
+//Components
+import useToggleState from '../Hooks/useToggleState';
+import TodoEditForm from './TodoEditForm';
+
 //MaterialUI
 import {
     IconButton,
@@ -12,7 +16,17 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Todo({ id, task, isCompleted, isLast, toggleCompleted, removeTodo }) {
+function Todo({
+    id,
+    task,
+    isCompleted,
+    isLast,
+    toggleCompleted,
+    removeTodo,
+    editTodo,
+}) {
+    const [isEditing, toggleIsEditing] = useToggleState(false);
+
     const handleRemove = () => {
         removeTodo(id);
     };
@@ -23,15 +37,26 @@ function Todo({ id, task, isCompleted, isLast, toggleCompleted, removeTodo }) {
                     checked={isCompleted}
                     onClick={() => toggleCompleted(id)}
                 />
-                <ListItemText
-                    style={{
-                        textDecoration: isCompleted ? 'line-through' : 'none',
-                    }}
-                >
-                    {task}
-                </ListItemText>
+                {isEditing ? (
+                    <TodoEditForm
+                        editTodo={editTodo}
+                        task={task}
+                        id={id}
+                        toggleIsEditing={toggleIsEditing}
+                    />
+                ) : (
+                    <ListItemText
+                        style={{
+                            textDecoration: isCompleted
+                                ? 'line-through'
+                                : 'none',
+                        }}
+                    >
+                        {task}
+                    </ListItemText>
+                )}
                 <ListItemSecondaryAction>
-                    <IconButton aria-label='Edit'>
+                    <IconButton aria-label='Edit' onClick={toggleIsEditing}>
                         <EditIcon />
                     </IconButton>
                     <IconButton aria-label='Delete' onClick={handleRemove}>

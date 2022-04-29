@@ -41,6 +41,14 @@ function TodoPage(props) {
         setTodos([...todos, newTodo]);
     };
 
+    const editTodo = (id, newTask) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                return todo.id === id ? { ...todo, task: newTask } : todo;
+            }),
+        );
+    };
+
     const removeTodo = (id) => {
         setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
     };
@@ -69,6 +77,7 @@ function TodoPage(props) {
                         todos={todos}
                         toggleCompleted={toggleCompleted}
                         removeTodo={removeTodo}
+                        editTodo={editTodo}
                     />
                 </Grid>
             </Grid>
