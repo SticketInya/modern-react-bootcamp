@@ -7,15 +7,26 @@ import {
     ListItemSecondaryAction,
     ListItemText,
     Divider,
+    Checkbox,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Todo({ id, task, isCompleted, isLast }) {
+function Todo({ id, task, isCompleted, isLast, toggleCompleted }) {
     return (
         <>
             <ListItem className='Todo'>
-                <ListItemText>{task}</ListItemText>
+                <Checkbox
+                    checked={isCompleted}
+                    onClick={() => toggleCompleted(id)}
+                />
+                <ListItemText
+                    style={{
+                        textDecoration: isCompleted ? 'line-through' : 'none',
+                    }}
+                >
+                    {task}
+                </ListItemText>
                 <ListItemSecondaryAction>
                     <IconButton aria-label='Edit'>
                         <EditIcon />

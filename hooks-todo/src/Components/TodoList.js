@@ -6,7 +6,7 @@ import Todo from './Todo';
 //MaterialUI
 import { List, Paper } from '@mui/material';
 
-function TodoList({ todos }) {
+function TodoList({ todos, toggleCompleted }) {
     return (
         <Paper className='TodoList'>
             <List>
@@ -15,6 +15,7 @@ function TodoList({ todos }) {
                         key={todo.id}
                         {...todo}
                         isLast={i < todos.length - 1}
+                        toggleCompleted={toggleCompleted}
                     />
                 ))}
             </List>

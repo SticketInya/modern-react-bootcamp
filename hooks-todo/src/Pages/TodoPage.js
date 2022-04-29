@@ -41,6 +41,13 @@ function TodoPage(props) {
         setTodos([...todos, newTodo]);
     };
 
+    const toggleCompleted = (id) => {
+        const newTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo,
+        );
+        setTodos(newTodos);
+    };
+
     return (
         <Paper className='TodoPage'>
             <AppBar position='static'>
@@ -54,7 +61,7 @@ function TodoPage(props) {
             >
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm addTodo={addTodo} />
-                    <TodoList todos={todos} />
+                    <TodoList todos={todos} toggleCompleted={toggleCompleted} />
                 </Grid>
             </Grid>
         </Paper>
