@@ -4,14 +4,18 @@ import React, { useState } from 'react';
 import Todo from './Todo';
 
 //MaterialUI
-import { Divider, List, Paper } from '@mui/material';
+import { List, Paper } from '@mui/material';
 
 function TodoList({ todos }) {
     return (
         <Paper className='TodoList'>
             <List>
-                {todos.map((todo) => (
-                    <Todo key={todo.id} {...todo} />
+                {todos.map((todo, i) => (
+                    <Todo
+                        key={todo.id}
+                        {...todo}
+                        isLast={i < todos.length - 1}
+                    />
                 ))}
             </List>
         </Paper>
