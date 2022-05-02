@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
-//Components
+import React from 'react';
 import TodoList from '../Components/TodoList';
 import TodoForm from '../Components/TodoForm';
+import { TodosProvider } from '../Contexts/todos.context';
 
 //MaterialUI
 import Paper from '@mui/material/Paper';
 import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
 
-//CSS
+//Styles
 import './TodoPage.css';
-import useTodoState from '../Hooks/useTodoState';
 
 function TodoPage() {
-    const initialTodos = JSON.parse(localStorage.getItem('todos') || '[]');
-    const { todos, addTodo, editTodo, removeTodo, toggleTodoCompleted } =
-        useTodoState(initialTodos);
-
     return (
         <Paper className='TodoPage'>
             <AppBar position='static'>
@@ -29,13 +23,10 @@ function TodoPage() {
                 style={{ justifyContent: 'center', marginTop: '5rem' }}
             >
                 <Grid item xs={11} md={8} lg={4}>
-                    <TodoForm addTodo={addTodo} />
-                    <TodoList
-                        todos={todos}
-                        toggleCompleted={toggleTodoCompleted}
-                        removeTodo={removeTodo}
-                        editTodo={editTodo}
-                    />
+                    <TodosProvider>
+                        <TodoForm />
+                        <TodoList />
+                    </TodosProvider>
                 </Grid>
             </Grid>
         </Paper>

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 
 //Components
 import Todo from './Todo';
 
 //MaterialUI
 import { List, Paper } from '@mui/material';
+import { TodosContext } from '../Contexts/todos.context';
 
-function TodoList({ todos, toggleCompleted, removeTodo, editTodo }) {
+function TodoList() {
+    const { todos } = useContext(TodosContext);
     if (todos.length === 0) {
         return null;
     }
@@ -18,9 +20,6 @@ function TodoList({ todos, toggleCompleted, removeTodo, editTodo }) {
                         key={todo.id}
                         {...todo}
                         isLast={i < todos.length - 1}
-                        toggleCompleted={toggleCompleted}
-                        removeTodo={removeTodo}
-                        editTodo={editTodo}
                     />
                 ))}
             </List>

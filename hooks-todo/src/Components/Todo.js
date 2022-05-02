@@ -1,8 +1,7 @@
-import React from 'react';
-
-//Components
+import React, { useContext } from 'react';
 import useToggleState from '../Hooks/useToggleState';
 import TodoEditForm from './TodoEditForm';
+import { TodosContext } from '../Contexts/todos.context';
 
 //MaterialUI
 import {
@@ -16,15 +15,8 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Todo({
-    id,
-    task,
-    isCompleted,
-    isLast,
-    toggleCompleted,
-    removeTodo,
-    editTodo,
-}) {
+function Todo({ id, task, isCompleted, isLast }) {
+    const { removeTodo, toggleTodoCompleted } = useContext(TodosContext);
     const [isEditing, toggleIsEditing] = useToggleState(false);
 
     const handleRemove = () => {
@@ -35,11 +27,10 @@ function Todo({
             <ListItem className='Todo'>
                 <Checkbox
                     checked={isCompleted}
-                    onClick={() => toggleCompleted(id)}
+                    onClick={() => toggleTodoCompleted(id)}
                 />
                 {isEditing ? (
                     <TodoEditForm
-                        editTodo={editTodo}
                         task={task}
                         id={id}
                         toggleIsEditing={toggleIsEditing}
