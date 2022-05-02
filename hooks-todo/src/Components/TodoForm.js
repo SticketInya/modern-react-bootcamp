@@ -6,12 +6,12 @@ import { TodosContext } from '../Contexts/todos.context';
 import { Paper, TextField } from '@mui/material';
 
 function TodoForm() {
-    const { addTodo } = useContext(TodosContext);
+    const { todosDispatch } = useContext(TodosContext);
     const [task, updateTask, resetTask] = useFormInputState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addTodo(task);
+        todosDispatch({ type: 'ADD', task });
         resetTask();
     };
 

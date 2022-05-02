@@ -6,11 +6,11 @@ import useFormInputState from '../Hooks/useFormInputState';
 import { TextField } from '@mui/material';
 
 function TodoEditForm({ id, task, toggleIsEditing }) {
-    const { editTodo } = useContext(TodosContext);
+    const { todosDispatch } = useContext(TodosContext);
     const [newTask, updateNewTask] = useFormInputState(task);
     const handleSubmit = (e) => {
         e.preventDefault();
-        editTodo(id, newTask);
+        todosDispatch({ type: 'EDIT', id, newTask });
         toggleIsEditing();
     };
     return (

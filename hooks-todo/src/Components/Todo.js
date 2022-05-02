@@ -16,18 +16,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 function Todo({ id, task, isCompleted, isLast }) {
-    const { removeTodo, toggleTodoCompleted } = useContext(TodosContext);
+    const { todosDispatch } = useContext(TodosContext);
     const [isEditing, toggleIsEditing] = useToggleState(false);
 
     const handleRemove = () => {
-        removeTodo(id);
+        todosDispatch({ type: 'REMOVE', id });
     };
     return (
         <>
             <ListItem className='Todo'>
                 <Checkbox
                     checked={isCompleted}
-                    onClick={() => toggleTodoCompleted(id)}
+                    onClick={() => todosDispatch({ type: 'TOGGLE', id })}
                 />
                 {isEditing ? (
                     <TodoEditForm
