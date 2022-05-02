@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { TodosContext } from '../Contexts/todos.context';
+import { TodosDispatchContext } from '../Contexts/todos.context';
 import useFormInputState from '../Hooks/useFormInputState';
 
 //MaterialUI
 import { TextField } from '@mui/material';
 
 function TodoEditForm({ id, task, toggleIsEditing }) {
-    const { todosDispatch } = useContext(TodosContext);
+    const todosDispatch = useContext(TodosDispatchContext);
     const [newTask, updateNewTask] = useFormInputState(task);
     const handleSubmit = (e) => {
         e.preventDefault();

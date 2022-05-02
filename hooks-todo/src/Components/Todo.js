@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import useToggleState from '../Hooks/useToggleState';
 import TodoEditForm from './TodoEditForm';
-import { TodosContext } from '../Contexts/todos.context';
+import { TodosDispatchContext } from '../Contexts/todos.context';
 
 //MaterialUI
 import {
@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 function Todo({ id, task, isCompleted, isLast }) {
-    const { todosDispatch } = useContext(TodosContext);
+    const todosDispatch = useContext(TodosDispatchContext);
     const [isEditing, toggleIsEditing] = useToggleState(false);
 
     const handleRemove = () => {

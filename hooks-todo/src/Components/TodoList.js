@@ -8,7 +8,7 @@ import { List, Paper } from '@mui/material';
 import { TodosContext } from '../Contexts/todos.context';
 
 function TodoList() {
-    const { todos } = useContext(TodosContext);
+    const todos = useContext(TodosContext);
     if (todos.length === 0) {
         return null;
     }
